@@ -48,6 +48,7 @@ The basic functionality for NMT commands and SDO transfers can be found in
 - canopen.c / canopen.h (basic functionality)
 - canopen-com.c / canopen-com.h (sending and receiving packages)
 - can-if.c / can-if.h (socket handling)
+
 Our extensions include
 - canopen-drv.c / canopen-drv.h (adds PDO support)
 - canopen-Faulhaber-drv.c / canopen-Faulhaber-drv.h (support for Faulhaber drives)
