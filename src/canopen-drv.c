@@ -13,7 +13,8 @@
 //#include "canopen.h"
 #include <stdio.h>
 #include <errno.h>
-
+#include <unistd.h>
+#include <string.h>
 
 int canopen_frame_fill_pdo_set_position(canopen_frame_t *frame, uint8_t function_code, uint8_t node, uint16_t control, uint32_t targetpos){
 
