@@ -3,6 +3,7 @@
 #include "canopen-com.h"
 #include "can-constants.h"
 #include <stdio.h>
+#include <unistd.h>
 
 int init_can_nodes(int sock){
 	
