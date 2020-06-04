@@ -43,6 +43,12 @@ int main() {
 }
 ```
 
+### Bringing CAN interface up
+Before you can start your application you have to bring up your interface with
+```
+/sbin/ip link set up can0 type can bitrate 125000
+```
+
 ## Organization of the library
 The basic functionality for NMT commands and SDO transfers can be found in
 - canopen.c / canopen.h (basic functionality)
