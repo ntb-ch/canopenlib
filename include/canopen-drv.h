@@ -1,3 +1,9 @@
+//------------------------------------------------------------------------------
+// Andreas Kalberer, Urs Graf, NTB
+//
+// Adds PDO support to libcanopen (https://github.com/rscada/libcanopen)
+//------------------------------------------------------------------------------
+
 #ifndef _CANOPEN_DRV_H_
 #define _CANOPEN_DRV_H_
 
@@ -6,7 +12,6 @@ extern "C" {
 #endif
 
 #include "canopen.h"
-
 
 int canopen_frame_fill_pdo_set_position(canopen_frame_t *frame, uint8_t function_code, uint8_t node, uint16_t control, uint32_t targetpos);
 int canopen_pdo_set_abs_position(int sock, uint8_t node, uint8_t function_code, uint16_t control, uint32_t targetpos);

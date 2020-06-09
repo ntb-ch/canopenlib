@@ -1,19 +1,21 @@
-#include "canopen-faulhaber-drv.h"
+//------------------------------------------------------------------------------
+// Andreas Kalberer, Urs Graf, NTB
+//
+// Faulhaber drive specific functions for CANopen
+// All transfers through SDO
+//------------------------------------------------------------------------------
 
+#include "canopen-faulhaber-drv.h"
 #include "canopen-com.h"
 #include "can-constants.h"
 #include <stdio.h>
 #include <unistd.h>
 
-int init_can_nodes(int sock){
-	
-	// start nodes
-	return send_nmt(sock, CANOPEN_NMT_MC_CS_START, 0);
-  
+int init_can_nodes(int sock) {  // start nodes
+  return send_nmt(sock, CANOPEN_NMT_MC_CS_START, 0);
 }
 
-int init_faulhaber_motor(int sock, int node)
-{
+int init_faulhaber_motor(int sock, int node) {
 	int err = 0;
       
 	if((err = canopen_sdo_download_exp(sock, node, controlWord, 0, 0,               2)) != 0) {        
@@ -99,17 +101,11 @@ int homing_faulhaber_motor(int sock, int node, int homingMethod)
 	return 0;
 }
 
-int set_profile_velocity_mode_faulhaber(int sock, int node){
-	int err = 0;
-	
-	//Velocity-mode	
-	if((err = canopen_sdo_download_exp(sock, node, switchModeOfOperation, 0, speedMode, 1)) != 0){
-		return err;
-	}
+int set_profile_velocity_mode_faulhaber(int sock, int node) {
+  return canopen_sdo_download_exp(sock, node, switchModeOfOperation, 0, speedMode, 1);
 }
 
-int set_position_profile_mode_faulhaber(int sock, int node)
-{
+int set_position_profile_mode_faulhaber(int sock, int node) {
 	int err = 0;
 	uint32_t data;
 	
@@ -192,26 +188,12 @@ int set_max_speed_faulhaber(int sock, int node, int speed)    // speed in rpm
 	return 0;
 }
 
-int get_warning_drive(int sock, int node, uint32_t *warningData)
-{
-	int err = 0;
-	
-	if((err = canopen_sdo_upload_exp(sock, node, warning, 0, warningData)) != 0){
-		return err;
-	}
-		
-	return 0;
+int get_warning_drive(int sock, int node, uint32_t *warningData) {
+  return canopen_sdo_upload_exp(sock, node, warning, 0, warningData);
 }
 
-int get_status_drive(int sock, int node, uint32_t *status)
-{
-	int err = 0;
-	
-	if((err = canopen_sdo_upload_exp(sock, node, statusWord, 0, status)) != 0){
-		return err;
-	}
-		
-	return 0;
+int get_status_drive(int sock, int node, uint32_t *status) {
+  return canopen_sdo_upload_exp(sock, node, statusWord, 0, status);
 }
 
 int configure_sync_drive(int sock, int node, uint32_t period, uint16_t limit){

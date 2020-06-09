@@ -1,3 +1,10 @@
+//------------------------------------------------------------------------------
+// Andreas Kalberer, Urs Graf, NTB
+//
+// Faulhaber drive specific functions for CANopen
+// All transfers through SDO
+//------------------------------------------------------------------------------
+
 #ifndef _CANOPEN_FAULHABER_DRV_H_
 #define _CANOPEN_FAULHABER_DRV_H_
 
@@ -7,8 +14,9 @@ extern "C" {
 
 #include <stdint.h>
 
-//#include "canopen.h"
-	
+static uint32_t warn_emergency = 0x00000001;
+static uint32_t warn_posLimit  = 0x01000000;
+
 int init_can_nodes(int sock);
 int init_faulhaber_motor(int sock, int node);
 
@@ -33,9 +41,6 @@ int get_warning_drive(int sock, int node, uint32_t *warningData);
 int get_status_drive(int sock, int node, uint32_t *status);
 
 int configure_sync_drive(int sock, int node, uint32_t period, uint16_t limit);
-
-// int is_switch_active(int sock, int node, int switchId);
-
 
 #ifdef __cplusplus
 }

@@ -1,16 +1,10 @@
-/**
- * Autor: A. Kalberer
- * 
- * Helper functions for Faulhaber drive with CANopen
- * 
- * - adds PDO support to libcanopen (https://github.com/rscada/libcanopen)
- * 
- * 
- * */
+//------------------------------------------------------------------------------
+// Andreas Kalberer, Urs Graf, NTB
+//
+// Adds PDO support to libcanopen (https://github.com/rscada/libcanopen)
+//------------------------------------------------------------------------------
 
 #include "canopen-drv.h"
-
-//#include "canopen.h"
 #include <stdio.h>
 #include <errno.h>
 #include <unistd.h>
